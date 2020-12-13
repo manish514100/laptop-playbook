@@ -1,0 +1,50 @@
+---
+
+- hosts: localhost
+  connection: local
+
+  vars:
+    pamac_conf_file: /etc/pamac.conf
+
+  pre_tasks:
+
+    - name: ensure pamac is installed
+      pacman: name=pamac state=present
+
+    - name: install essential packages
+      shell: "yes | pamac install {{item}}"
+      with_items:
+        - git
+        - ctags
+        - ncurses
+        - curl
+      register: command_result
+      failed_when: command_result.rc != 0
+      changed_when: "'successfully' in command_result.stdout"
+      become: true
+
+  tasks:
+
+    - name: donwload vim related dotfiles
+      get_url:
+        url: "https://raw.githubusercontent.com/diegosouza/dotfiles/master/{{item}}"
+        dest: "~/{{item}}"
+      with_items:
+        - ".ctags"
+        - ".vimrc"
+        - ".vimrc.local"
+        - ".vimrc.local.bundles"
+
+    - name: create colorschemes directory
+      file:
+        path: "~/.vim/colors"
+        state: directory
+
+    - name: donwload vim colorschemes
+      get_url:
+        url: "https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/{{item}}"
+        dest: "~/.vim/colors/{{item}}"
+      with_items:
+        - Tomorrow-Night-Bright.vim
+        - bubblegum.vim
+        - material.vim
