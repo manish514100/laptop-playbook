@@ -2,6 +2,7 @@
 # tasks file for common
   - name: ensure pamac is installed
     pacman: name=pamac state=present
+    become: true
 
   - name: "ensure EnableAUR in {{pamac_conf_file}}"
     replace:
