@@ -1,0 +1,89 @@
+---
+# tasks file for common
+vars:
+  pamac_conf_file: /etc/pamac.conf
+  default_shell: zsh
+
+pre_tasks:
+
+  - name: ensure pamac is installed
+    pacman: name=pamac state=present
+
+  - name: "ensure EnableAUR in {{pamac_conf_file}}"
+    replace:
+      path: /etc/pamac.conf
+      regexp: "^#EnableAUR$"
+      replace: "EnableAUR"
+    become: true
+
+  - name: "ensure CheckAURUpdates in {{pamac_conf_file}}"
+    replace:
+      path: /etc/pamac.conf
+      regexp: "^#CheckAURUpdates$"
+      replace: "CheckAURUpdates"
+    become: true
+
+  - name: "ensure CheckAURVCSUpdates in {{pamac_conf_file}}"
+    replace:
+      path: /etc/pamac.conf
+      regexp: "^#CheckAURVCSUpdates$"
+      replace: "CheckAURVCSUpdates"
+
+  - name: install essential packages
+    shell: "yes | pamac install {{item}}"
+    with_items:
+      - git
+      - ctags
+      - ncurses
+      - curl
+    register: command_result
+    failed_when: command_result.rc != 0
+    changed_when: "'successfully' in command_result.stdout"
+    become: true
+
+  - name: donwload vim related dotfiles
+    get_url:
+      url: "https://raw.githubusercontent.com/diegosouza/dotfiles/master/{{item}}"
+      dest: "~/{{item}}"
+    with_items:
+      - ".ctags"
+      - ".vimrc"
+      - ".vimrc.local"
+      - ".vimrc.local.bundles"
+
+  - name: create colorschemes directory
+    file:
+      path: "~/.vim/colors"
+      state: directory
+
+  - name: donwload vim colorschemes
+    get_url:
+      url: "https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/{{item}}"
+      dest: "~/.vim/colors/{{item}}"
+    with_items:
+      - Tomorrow-Night-Bright.vim
+      - bubblegum.vim
+      - material.vim
+
+  - name: install shell and cli related packages
+    shell: "yes | pamac install {{item}}"
+    with_items:
+      - zsh
+      - tilix
+      - ripgrep
+      - the_silver_searcher
+    register: command_result
+    failed_when: command_result.rc != 0
+    changed_when: "'successfully' in command_result.stdout"
+    become: true
+    tags: [packages]
+
+  - name: define the default shell
+    user:
+      name: "{{ansible_env.USER}}"
+      shell: "/usr/bin/{{default_shell}}"
+    become: true
+
+  - name: install oh-my-zsh
+    shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    tags: [oh-my-zsh]
