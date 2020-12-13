@@ -32,7 +32,7 @@
         replace: "CheckAURVCSUpdates"
 
     - name: Run vim ediror playbook
-      include: playbook/editor.yml
+      include: playbooks/editor.yml
 
     - name: Run oh my zsh and set shell to zsh
-      include: playbook/shell.yml
+      include: playbooks/shell.yml
