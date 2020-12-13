@@ -1,6 +1,6 @@
 ---
 #- hosts: localhost
-  connection: local
+#  connection: local
 
   vars:
     pamac_conf_file: /etc/pamac.conf
