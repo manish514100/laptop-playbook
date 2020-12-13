@@ -1,9 +1,5 @@
 ---
 # tasks file for common
-vars:
-  pamac_conf_file: /etc/pamac.conf
-  default_shell: zsh
-
 pre_tasks:
 
   - name: ensure pamac is installed
