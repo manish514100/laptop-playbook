@@ -23,6 +23,7 @@
       path: /etc/pamac.conf
       regexp: "^#CheckAURVCSUpdates$"
       replace: "CheckAURVCSUpdates"
+    become: true
 
   - name: install essential packages
     shell: "yes | pamac install {{item}}"
