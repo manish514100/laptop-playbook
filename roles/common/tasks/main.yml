@@ -1,7 +1,5 @@
 ---
 # tasks file for common
-pre_tasks:
-
   - name: ensure pamac is installed
     pacman: name=pamac state=present
 
