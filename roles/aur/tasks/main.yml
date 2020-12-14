@@ -49,7 +49,7 @@
 - name: Install whitesur themes via aur
   aur:
     name:
-      - whitesur-kvantum-theme-git
+#      - whitesur-kvantum-theme-git
       - whitesur-kde-theme-git
       - whitesur-icon-theme-git
       - whitesur-gtk-theme-git
