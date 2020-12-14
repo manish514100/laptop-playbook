@@ -52,14 +52,14 @@
       path: "~/.vim/colors"
       state: directory
 
-  - name: donwload vim colorschemes
-    get_url:
-      url: "https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/{{item}}"
-      dest: "~/.vim/colors/{{item}}"
-    with_items:
-      - Tomorrow-Night-Bright.vim
-      - bubblegum.vim
-      - material.vim
+#  - name: donwload vim colorschemes
+#    get_url:
+#      url: "https://raw.githubusercontent.com/flazz/vim-colorschemes/master/colors/{{item}}"
+#      dest: "~/.vim/colors/{{item}}"
+#    with_items:
+#      - Tomorrow-Night-Bright.vim
+#      - bubblegum.vim
+#      - material.vim
 
   - name: install shell and cli related packages
     shell: "yes | pamac install {{item}}"
