@@ -5,6 +5,7 @@
     name: aur_builder
     group: wheel
   become: yes
+  become_user: manish
 
 - name: Create sudo rights for aur_builder user
   lineinfile:
