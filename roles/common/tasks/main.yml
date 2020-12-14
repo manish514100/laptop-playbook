@@ -6,5 +6,7 @@
       - latte-dock
       - net-tools
       - vim
+      - powerline-fonts
+      - xclip
     state: latest
   become: true
