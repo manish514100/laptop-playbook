@@ -28,16 +28,18 @@
 - name: Download custom plugin Zsh-syntax-highlighting
   git:
     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
-    dest: /usr/share/oh-my-zsh/custom/plugins
+    dest: /usr/share/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
     clone: yes
     update: yes
+  become: true
 
 - name: Download custom plugin Zsh-autosuggestions
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions'
-    dest: /usr/share/oh-my-zsh/custom/plugins
+    dest: /usr/share/oh-my-zsh/custom/plugins/zsh-autosuggestions
     clone: yes
     update: yes
+  become: true
 
 - name: Copy my custom zshrc file
   copy:
