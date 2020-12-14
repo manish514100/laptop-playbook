@@ -24,3 +24,22 @@
     name: "{{ansible_env.USER}}"
     shell: "/usr/bin/{{default_shell}}"
   become: true
+
+- name: Download custom plugin Zsh-syntax-highlighting
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting'
+    dest: /usr/share/oh-my-zsh/custom/plugins
+    clone: yes
+    update: yes
+
+- name: Download custom plugin Zsh-autosuggestions
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions'
+    dest: /usr/share/oh-my-zsh/custom/plugins
+    clone: yes
+    update: yes
+
+- name: Copy my custom zshrc file
+  copy:
+    src: zshrc
+    dest: ~/.zshrc
