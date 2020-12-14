@@ -8,5 +8,6 @@
       - vim
       - powerline-fonts
       - xclip
+      - brave
     state: latest
   become: true
