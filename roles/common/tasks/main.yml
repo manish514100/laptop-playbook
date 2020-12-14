@@ -9,5 +9,10 @@
       - powerline-fonts
       - xclip
       - brave
+      - code
+      - docker
+      - docker-compose
+      - kubectl
+      - helm
     state: latest
   become: true
