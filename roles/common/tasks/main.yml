@@ -37,15 +37,15 @@
     changed_when: "'successfully' in command_result.stdout"
     become: true
 
-  - name: donwload vim related dotfiles
-    get_url:
-      url: "https://raw.githubusercontent.com/diegosouza/dotfiles/master/{{item}}"
-      dest: "~/{{item}}"
-    with_items:
-      - ".ctags"
-      - ".vimrc"
-      - ".vimrc.local"
-      - ".vimrc.local.bundles"
+#  - name: donwload vim related dotfiles
+#    get_url:
+#      url: "https://raw.githubusercontent.com/diegosouza/dotfiles/master/{{item}}"
+#      dest: "~/{{item}}"
+#    with_items:
+#      - ".ctags"
+#      - ".vimrc"
+#      - ".vimrc.local"
+#      - ".vimrc.local.bundles"
 
   - name: create colorschemes directory
     file:
