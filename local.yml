@@ -5,5 +5,5 @@
 
   roles:
     - kewlfft.aur
-#    - common
+    - common
     - aur
