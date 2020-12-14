@@ -12,7 +12,7 @@
     line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: yes
     validate: 'visudo -cf %s'
-    become: yes
+  become: yes
 
 - name: Install oh-my-zsh via aur
   aur: name=oh-my-zsh-git use=makepkg state=present
