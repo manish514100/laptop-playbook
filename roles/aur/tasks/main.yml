@@ -18,3 +18,9 @@
   aur: name=oh-my-zsh-git use=makepkg state=present
   become: yes
   become_user: aur_builder
+
+- name: define the default shell
+  user:
+    name: "{{ansible_env.USER}}"
+    shell: "/usr/bin/{{default_shell}}"
+  become: true
