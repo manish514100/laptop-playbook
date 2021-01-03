@@ -45,3 +45,15 @@
   copy:
     src: zshrc
     dest: ~/.zshrc
+
+- name: Install whitesur themes via aur
+  aur:
+    name:
+      - whitesur-kde-theme-git
+      - whitesur-icon-theme-git
+      - whitesur-gtk-theme-git
+      - whitesur-cursor-theme-git
+    use: makepkg
+    state: present
+  become: yes
+  become_user: aur_builder
