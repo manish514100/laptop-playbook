@@ -4,6 +4,7 @@
 #  become: true
 
   roles:
-    - kewlfft.aur
-    - common
-    - aur
+#    - kewlfft.aur
+#    - common
+#    - aur
+     - vim
